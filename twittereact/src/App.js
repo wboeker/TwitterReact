@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Note from './Note/Note';
+import NoteForm from './NoteForm/NoteForm';
 import './App.css';
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
         <div className="notesBody">
           {
             //map each note in notes array into a note component
-            this.state.notes.map((note)=> {
+            this.state.notes.map((note) => {
               return (
                 <Note noteContent={note.noteContent} noteId={note.id} key={note.id}/>
               )
@@ -33,7 +34,7 @@ class App extends Component {
           }
         </div>
         <div className="notesFooter">
-          Footer will go here
+          <NoteForm/>
         </div>
       </div>
     );
