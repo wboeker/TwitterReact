@@ -8,7 +8,7 @@ class NoteForm extends Component{
       newNoteContent: '',
     };
     this.handleUserInput = this.handleUserInput.bind(this);//binds this to the component
-    //this.writeNote = this.writeNode.bind(this);
+    this.writeNote = this.writeNote.bind(this);//this.writeNote = this.writeNode.bind(this);
 
   }
 
@@ -23,7 +23,8 @@ class NoteForm extends Component{
   writeNote(){
     // call a method that sets the noteContent for a note to
     // the value of the input
-    this.props.addNote(this.state.newNoteContent);
+    const content = this.state.newNoteContent;
+    this.props.addNote(content);
     //set newNoteContent back to an empty string (after onclick takes place)
     this.setState({
       newNoteContent: '',

@@ -8,6 +8,7 @@ class App extends Component {
 
   constructor(props){
     super(props);
+    this.addNote = this.addNote.bind(this);
     //going to setup React state of our component
     this.state = {
       //array of notes
@@ -17,6 +18,16 @@ class App extends Component {
       ],
     }
   }
+
+  addNote(note){
+    //push the note onto the nodes array
+    const previousNotes = this.state.notes;
+    previousNotes.push({id: previousNotes.length+1, noteContent: note});
+    this.setState({
+      notes: previousNotes
+    })
+  }
+
   render() {
     return (
       <div className="notesWrapper">
@@ -34,7 +45,7 @@ class App extends Component {
           }
         </div>
         <div className="notesFooter">
-          <NoteForm/>
+          <NoteForm addNote={this.addNote}/>
         </div>
       </div>
     );
