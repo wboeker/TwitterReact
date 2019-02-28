@@ -6,14 +6,22 @@ class Note extends Component{
   constructor(props){
     super(props);
     //passing parameters
-    this.noteContent = props.noteContent;
+    this.tweetContent = props.tweetContent;
     this.noteId = props.noteId;
+  }
+
+  handleremoveTweet(id){
+    this.props.removeTweet(id);
   }
 
   render(props){
       return(
         <div className="note fade-in">
-          <p className="noteContent">{this.noteContent}</p>
+          <span className="closetbtn"
+              onClick={() => this.handleremoveTweet(this.noteId)}>
+              &times;
+          </span>
+          <p className="tweetContent">{this.tweetContent}</p>
         </div>
       )
   }
@@ -21,7 +29,7 @@ class Note extends Component{
 
 //set parameter type
 Note.propTypes = {
-  noteContent:PropTypes.string
+  tweetContent:PropTypes.string
 }
 
 export default Note;

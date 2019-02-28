@@ -10,11 +10,12 @@ class App extends Component {
 
   constructor(props){
     super(props);
-    this.addNote = this.addNote.bind(this);
+    this.addTweet = this.addTweet.bind(this);
+    this.removeTweet = this.removeTweet.bind(this);
 
     this.app = firebase.initializeApp(DB_CONFIG);
     //store list of notes firebase
-    this.db = this.app.database().ref().child('notes');
+    this.database = this.app.database().ref().child('notes');
     //going to setup React state of our component
     this.state = {
       //array of notes
@@ -23,14 +24,26 @@ class App extends Component {
   }
 
   componentWillMount(){
-    const previousNotes = this.state.note;
+    const previousNotes = this.state.notes;
 
     //DataSnapshot
     this.database.on('child_added', snap => {
       previousNotes.push({
         id: snap.key,
-        noteContent: snap.val().noteContent,
+        tweetContent: snap.val().tweetContent,
       })
+
+      this.setState({
+        notes: previousNotes
+      })
+    })
+
+    this.database.on('child_removed', snap => {
+      for(var i=0; i < previousNotes.length; i++){
+        if(previousNotes[i].id === snap.key){
+          previousNotes.splice(i, 1);
+        }
+      }
 
       this.setState({
         notes: previousNotes
@@ -38,9 +51,13 @@ class App extends Component {
     })
   }
 
-  addNote(note){
+  addTweet(note){
     //user entered content pushed onto list in database
-    this.database.push().set({noteContent: note});
+    this.database.push().set({tweetContent: note});
+  }
+
+  removeTweet(noteId){
+    this.database.child(noteId).remove();
   }
 
   render() {
@@ -54,13 +71,13 @@ class App extends Component {
             //map each note in notes array into a note component
             this.state.notes.map((note) => {
               return (
-                <Note noteContent={note.noteContent} noteId={note.id} key={note.id}/>
+                <Note tweetContent={note.tweetContent} noteId={note.id} key={note.id} removeTweet ={this.removeTweet}/>
               )
             })
           }
         </div>
         <div className="notesFooter">
-          <NoteForm addNote={this.addNote}/>
+          <NoteForm addTweet={this.addTweet}/>
         </div>
       </div>
     );

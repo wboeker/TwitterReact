@@ -5,29 +5,29 @@ class NoteForm extends Component{
   constructor(props){
     super(props);
     this.state = {
-      newNoteContent: '',
+      newTweetContent: '',
     };
     this.handleUserInput = this.handleUserInput.bind(this);//binds this to the component
-    this.writeNote = this.writeNote.bind(this);//this.writeNote = this.writeNode.bind(this);
+    this.writeTweet = this.writeTweet.bind(this);//this.writeTweet = this.writeNode.bind(this);
 
   }
 
-  // When the user input changes, set the newNoteContent
+  // When the user input changes, set the newTweetContent
   //to the value of what's in the input box
   handleUserInput(e){
     this.setState({
-      newNoteContent: e.target.value, //the value of the text input
+      newTweetContent: e.target.value, //the value of the text input
     })
   }
 
-  writeNote(){
-    // call a method that sets the noteContent for a note to
+  writeTweet(){
+    // call a method that sets the tweetContent for a note to
     // the value of the input
-    const content = this.state.newNoteContent;
-    this.props.addNote(content);
-    //set newNoteContent back to an empty string (after onclick takes place)
+    const content = this.state.newTweetContent;
+    this.props.addTweet(content);
+    //set newTweetContent back to an empty string (after onclick takes place)
     this.setState({
-      newNoteContent: '',
+      newTweetContent: '',
     })
   }
 
@@ -35,11 +35,11 @@ class NoteForm extends Component{
     return(
       <div className="formWrapper">
         <input className="noteInput"
-        placeholder="Write a new note..."
-        value={this.state.newNoteContent}
+        placeholder="Write a new tweet..."
+        value={this.state.newTweetContent}
         onChange={this.handleUserInput}/>
-        <button className="noteButton"
-        onClick={this.writeNote}>Add Note</button>
+        <button className="tweetButton"
+        onClick={this.writeTweet}>Tweet</button>
       </div>
     )
   }
