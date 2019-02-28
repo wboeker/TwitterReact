@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Note from './Note/Note';
 import NoteForm from './NoteForm/NoteForm';
+import { DB_CONFIG } from './Config/config';
+import firebase from 'firebase/app';
+import 'firebase/database';
 import './App.css';
 
 class App extends Component {
@@ -9,23 +11,36 @@ class App extends Component {
   constructor(props){
     super(props);
     this.addNote = this.addNote.bind(this);
+
+    this.app = firebase.initializeApp(DB_CONFIG);
+    //store list of notes firebase
+    this.db = this.app.database().ref().child('notes');
     //going to setup React state of our component
     this.state = {
       //array of notes
-      notes: [
-        { id: 1, noteContent: "Note 1 here!"},
-        { id: 2, noteContent: "Note 2 here!"},
-      ],
+      notes: [],
     }
   }
 
-  addNote(note){
-    //push the note onto the nodes array
-    const previousNotes = this.state.notes;
-    previousNotes.push({id: previousNotes.length+1, noteContent: note});
-    this.setState({
-      notes: previousNotes
+  componentWillMount(){
+    const previousNotes = this.state.note;
+
+    //DataSnapshot
+    this.database.on('child_added', snap => {
+      previousNotes.push({
+        id: snap.key,
+        noteContent: snap.val().noteContent,
+      })
+
+      this.setState({
+        notes: previousNotes
+      })
     })
+  }
+
+  addNote(note){
+    //user entered content pushed onto list in database
+    this.database.push().set({noteContent: note});
   }
 
   render() {
