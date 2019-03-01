@@ -20,14 +20,14 @@ body {
   border: 0;
 }
 
-.notesWrapper {
+.tweetsFooter {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   height: 100%;
 }
 
-.notesHeader {
+.tweetsHeader {
   display: flex;
   flex: 1 1 5%;
   min-height: 2.5em;
@@ -44,7 +44,7 @@ body {
   display: block;
 }
 
-.notesBody {
+.tweetsBody {
   padding-top: 24px;
   display: flex;
   flex: 1 1 85%;
@@ -54,7 +54,7 @@ body {
   overflow: auto;
 }
 
-.notesFooter {
+.tweetsFooter {
   display: flex;
   flex: 1 1 5%;
   background-color: rgba(0,0,0,0.5);

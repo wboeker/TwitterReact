@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Note from './Note/Note';
-import NoteForm from './NoteForm/NoteForm';
+import Tweet from './Tweet/Tweet';
+import TweetForm from './TweetForm/TweetForm';
 import { DB_CONFIG } from './Config/config';
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -14,70 +14,70 @@ class App extends Component {
     this.removeTweet = this.removeTweet.bind(this);
 
     this.app = firebase.initializeApp(DB_CONFIG);
-    //store list of notes firebase
-    this.database = this.app.database().ref().child('notes');
+    //store list of tweets firebase
+    this.database = this.app.database().ref().child('tweets');
     //going to setup React state of our component
     this.state = {
-      //array of notes
-      notes: [],
+      //array of tweets
+      tweets: [],
     }
   }
 
   componentWillMount(){
-    const previousNotes = this.state.notes;
+    const previousTweets = this.state.tweets;
 
     //DataSnapshot
     this.database.on('child_added', snap => {
-      previousNotes.push({
+      previousTweets.push({
         id: snap.key,
         tweetContent: snap.val().tweetContent,
       })
 
       this.setState({
-        notes: previousNotes
+        tweets: previousTweets
       })
     })
 
     this.database.on('child_removed', snap => {
-      for(var i=0; i < previousNotes.length; i++){
-        if(previousNotes[i].id === snap.key){
-          previousNotes.splice(i, 1);
+      for(var i=0; i < previousTweets.length; i++){
+        if(previousTweets[i].id === snap.key){
+          previousTweets.splice(i, 1);
         }
       }
 
       this.setState({
-        notes: previousNotes
+        tweets: previousTweets
       })
     })
   }
 
-  addTweet(note){
+  addTweet(tweet){
     //user entered content pushed onto list in database
-    this.database.push().set({tweetContent: note});
+    this.database.push().set({tweetContent: tweet});
   }
 
-  removeTweet(noteId){
-    this.database.child(noteId).remove();
+  removeTweet(tweetId){
+    this.database.child(tweetId).remove();
   }
 
   render() {
     return (
-      <div className="notesWrapper">
-        <div className="notesHeader">
-          <div className="heading">React & Firebase To-Do List</div>
+      <div className="tweetsFooter">
+        <div className="tweetsHeader">
+          <div className="heading">Tweets</div>
         </div>
-        <div className="notesBody">
+        <div className="tweetsBody">
           {
-            //map each note in notes array into a note component
-            this.state.notes.map((note) => {
+            //map each note in tweets array into a note component
+            this.state.tweets.map((tweet) => {
               return (
-                <Note tweetContent={note.tweetContent} noteId={note.id} key={note.id} removeTweet ={this.removeTweet}/>
+                <Tweet user={tweet.user} tweetContent={tweet.tweetContent} tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}/>
               )
             })
           }
         </div>
-        <div className="notesFooter">
-          <NoteForm addTweet={this.addTweet}/>
+        <div className="tweetsFooter">
+          <TweetForm addTweet={this.addTweet}/>
         </div>
       </div>
     );

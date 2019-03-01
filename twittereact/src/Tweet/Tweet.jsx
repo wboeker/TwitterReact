@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Note.css';
+import './Tweet.css';
 import PropTypes from 'prop-types';
 
-class Note extends Component{
+class Tweet extends Component{
   constructor(props){
     super(props);
     //passing parameters
@@ -28,8 +28,8 @@ class Note extends Component{
 }
 
 //set parameter type
-Note.propTypes = {
+Tweet.propTypes = {
   tweetContent:PropTypes.string
 }
 
-export default Note;
+export default Tweet;
