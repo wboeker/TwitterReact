@@ -3,7 +3,7 @@
     height: 40px;
 }
 
-.tweetButton{
+.tweetButton, .userButton{
     border: none;
     margin: 0px;
     border-top-right-radius: 4px;
@@ -16,13 +16,13 @@
     transition: 0.2s ease-out;
 }
 
-.tweetButton:hover{
+.tweetButton:hover, .userButton:hover{
     background-color: #02BA85;
     color: #fff;
     transition: 0.2s ease-out;
 }
 
-.noteInput{
+.tweetInput{
     width: 800px;
     min-width: 800px;
     font-size: 1.3em;
@@ -35,7 +35,7 @@
     transition: 0.2s ease-out;
 }
 
-.noteInput:focus{
+.tweetInput:focus{
     background-color: #E4F1FE;
     color: #111;
     transition: 0.2s ease-in;

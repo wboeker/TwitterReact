@@ -8,6 +8,7 @@ class Tweet extends Component{
     //passing parameters
     this.tweetContent = props.tweetContent;
     this.tweetId = props.tweetId;
+    this.username = props.username;
   }
 
   handleremoveTweet(id){
@@ -17,6 +18,7 @@ class Tweet extends Component{
   render(props){
       return(
         <div className="note fade-in">
+          <p className="userDisplay">User: {this.username}</p>
           <span className="closetbtn"
               onClick={() => this.handleremoveTweet(this.tweetId)}>
               &times;
@@ -29,7 +31,8 @@ class Tweet extends Component{
 
 //set parameter type
 Tweet.propTypes = {
-  tweetContent:PropTypes.string
+  tweetContent:PropTypes.string,
+  username:PropTypes.string
 }
 
 export default Tweet;

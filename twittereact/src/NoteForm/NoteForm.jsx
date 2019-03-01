@@ -34,7 +34,7 @@ class NoteForm extends Component{
   render(){
     return(
       <div className="formWrapper">
-        <input className="noteInput"
+        <input className="tweetInput"
         placeholder="Write a new tweet..."
         value={this.state.newTweetContent}
         onChange={this.handleUserInput}/>

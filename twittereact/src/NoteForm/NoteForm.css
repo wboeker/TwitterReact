@@ -21,7 +21,7 @@
     transition: 0.2s ease-out;
 }
 
-.noteInput{
+.tweetInput{
     width: 800px;
     min-width: 800px;
     font-size: 1.3em;
@@ -34,7 +34,7 @@
     transition: 0.2s ease-out;
 }
 
-.noteInput:focus{
+.tweetInput:focus{
     background-color: #E4F1FE;
     color: #111;
     transition: 0.2s ease-in;

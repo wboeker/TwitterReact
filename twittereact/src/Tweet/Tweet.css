@@ -30,6 +30,10 @@
   display: block;
 }
 
+.userDisplay{
+  font-size: 20px;
+}
+
 .closebtn {
     color: #AA9;
     font-weight: bold;

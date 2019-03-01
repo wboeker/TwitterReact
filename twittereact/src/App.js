@@ -31,6 +31,7 @@ class App extends Component {
       previousTweets.push({
         id: snap.key,
         tweetContent: snap.val().tweetContent,
+        username: snap.val().username
       })
 
       this.setState({
@@ -51,9 +52,9 @@ class App extends Component {
     })
   }
 
-  addTweet(tweet){
+  addTweet(tweet, user){
     //user entered content pushed onto list in database
-    this.database.push().set({tweetContent: tweet});
+    this.database.push().set({tweetContent: tweet, username: user});
   }
 
   removeTweet(tweetId){
@@ -71,13 +72,13 @@ class App extends Component {
             //map each note in tweets array into a note component
             this.state.tweets.map((tweet) => {
               return (
-                <Tweet user={tweet.user} tweetContent={tweet.tweetContent} tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}/>
+                <Tweet username={tweet.username} tweetContent={tweet.tweetContent} tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}/>
               )
             })
           }
         </div>
         <div className="tweetsFooter">
-          <TweetForm addTweet={this.addTweet}/>
+          <TweetForm setUser={this.setUser} addTweet={this.addTweet}/>
         </div>
       </div>
     );
