@@ -36,7 +36,6 @@ class TweetForm extends Component{
   }
 
   constructDate() {
-    debugger;
     var d = new Date();
     var now = new Date();
     var x = "";
@@ -51,15 +50,19 @@ class TweetForm extends Component{
   writeTweet(){
     // call a method that sets the tweetContent for a note to
     // the value of the input
+    const date = this.constructDate();
+    // this.setState({
+    //   timeStamp: date
+    // });
     const content = this.state.newTweetContent;
     const user = this.state.username;
-    const time = this.state.timeStamp;
-    this.props.addTweet(content,user,time);
+    // const time = this.state.timeStamp;
+
+    this.props.addTweet(content,user,date);
     //set newTweetContent back to an empty string (after onclick takes place)
     this.setState({
       newTweetContent: '',
-      timeStamp: ''
-    })
+    });
   }
 
   render(){

@@ -31,13 +31,14 @@ class App extends Component {
       previousTweets.push({
         id: snap.key,
         tweetContent: snap.val().tweetContent,
-        username: snap.val().username
+        username: snap.val().username,
+        timeStamp: snap.val().timeStamp,
       })
 
       this.setState({
         tweets: previousTweets
       })
-    })
+    }) 
 
     this.database.on('child_removed', snap => {
       for(var i=0; i < previousTweets.length; i++){
