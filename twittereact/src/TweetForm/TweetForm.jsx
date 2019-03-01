@@ -36,7 +36,6 @@ class TweetForm extends Component{
     //set newTweetContent back to an empty string (after onclick takes place)
     this.setState({
       newTweetContent: '',
-      user: ''
     })
   }
 
@@ -52,7 +51,7 @@ class TweetForm extends Component{
         placeholder="Write a new tweet..."
         value={this.state.newTweetContent}
         onChange={this.handleUserInput}/>
-        
+
         <button className="tweetButton"
         onClick={this.writeTweet}>Tweet</button>
       </div>

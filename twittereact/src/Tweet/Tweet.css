@@ -13,6 +13,30 @@
   opacity: 1;
 }
 
+.timeBox {
+  width: 50%;
+  float: right;
+}
+
+.buttonContainer {
+  width: 100%;
+  height: 15px;
+  display: block;
+}
+
+.userBox {
+  width: 50%;
+  float: left;
+}
+
+.utContainer {
+  width: 100%;
+}
+
+.makeRight {
+  float: right;
+}
+
 @keyframes fadeIn { from { opacity:0; } to { opacity:0.8; } }
 @keyframes fadeOut { from { opactiy:0.8; } to { opacity:0; } }
 
@@ -30,7 +54,7 @@
   display: block;
 }
 
-.userDisplay{
+.userDisplay, .timeStamp{
   font-size: 20px;
 }
 
@@ -40,6 +64,7 @@
     float: right;
     cursor: pointer;
     font-size: 1.3em;
+    line-height: 10px;
 }
 
 .closebtn:hover {

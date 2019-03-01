@@ -52,6 +52,25 @@ class App extends Component {
     })
   }
 
+  addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
+  constructDate() {
+    var d = new Date();
+    var now = new Date();
+    var x = "";
+    var dmy = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+    var h = this.addZero(d.getHours());
+    var m = this.addZero(d.getMinutes());
+    var s = this.addZero(d.getSeconds());
+    x = dmy + " " + h + ":" + m + ":" + s;
+    return x;
+  }
+
   addTweet(tweet, user){
     //user entered content pushed onto list in database
     this.database.push().set({tweetContent: tweet, username: user});
@@ -72,7 +91,9 @@ class App extends Component {
             //map each note in tweets array into a note component
             this.state.tweets.map((tweet) => {
               return (
-                <Tweet username={tweet.username} tweetContent={tweet.tweetContent} tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}/>
+                <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
+                tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
+                timeStamp={tweet.timeStamp}/>
               )
             })
           }
