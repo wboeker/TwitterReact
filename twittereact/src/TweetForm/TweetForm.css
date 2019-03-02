@@ -16,7 +16,7 @@
     transition: 0.2s ease-out;
 }
 
-.tweetButton:hover, .userButton:hover{
+.tweetButton:hover, .filterButton:hover{
     background-color: #02BA85;
     color: #fff;
     transition: 0.2s ease-out;

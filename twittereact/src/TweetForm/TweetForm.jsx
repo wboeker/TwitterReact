@@ -14,6 +14,7 @@ class TweetForm extends Component{
     this.changeUser = this.changeUser.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.writeTweet = this.writeTweet.bind(this);//this.writeTweet = this.writeNode.bind(this);
+    this.filterByUser = this.filterByUser.bind(this);
   }
 
   // When the user input changes, set the newTweetContent
@@ -53,6 +54,11 @@ class TweetForm extends Component{
     var s = this.addZero(d.getSeconds());
     x = dmy + " " + h + ":" + m + ":" + s;
     return x;
+  }
+
+  filterByUser(){
+    const user = this.state.filterUser;
+    this.props.filterTweets(user);
   }
 
   writeTweet(){
