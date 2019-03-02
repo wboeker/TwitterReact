@@ -3,7 +3,7 @@
     height: 40px;
 }
 
-.tweetButton, .userButton{
+.tweetButton, .filterButton{
     border: none;
     margin: 0px;
     border-top-right-radius: 4px;
@@ -22,7 +22,7 @@
     transition: 0.2s ease-out;
 }
 
-.tweetInput{
+.tweetInput, .usernameInput{
     width: 800px;
     min-width: 800px;
     font-size: 1.3em;

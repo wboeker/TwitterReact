@@ -7,10 +7,12 @@ class TweetForm extends Component{
     this.state = {
       newTweetContent: '',
       username: '',
-      timeStamp: ''
+      timeStamp: '',
+      filterUser: ''
     };
     this.handleUserInput = this.handleUserInput.bind(this);//binds this to the component
     this.changeUser = this.changeUser.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.writeTweet = this.writeTweet.bind(this);//this.writeTweet = this.writeNode.bind(this);
   }
 
@@ -25,6 +27,12 @@ class TweetForm extends Component{
   changeUser(e){
     this.setState({
       username: e.target.value, //the value of the text input
+    })
+  }
+
+  handleFilter(e){
+    this.setState({
+      filterUser: e.target.value, //the value of the text input
     })
   }
 
@@ -68,6 +76,14 @@ class TweetForm extends Component{
   render(){
     return(
       <div className="formWrapper">
+        <input className="filterInput"
+        placeholder="filter by user"
+        value={this.state.filterUser}
+        onChange={this.handleFilter}/>
+
+        <button className="filterButton"
+        onClick={this.filterByUser}>Filter</button>
+
         <input className="usernameInput"
         placeholder="What's your username?"
         value={this.state.user}

@@ -38,7 +38,7 @@ class App extends Component {
       this.setState({
         tweets: previousTweets
       })
-    }) 
+    })
 
     this.database.on('child_removed', snap => {
       for(var i=0; i < previousTweets.length; i++){
@@ -62,6 +62,25 @@ class App extends Component {
     this.database.child(tweetId).remove();
   }
 
+  filterTweets(name){
+    // Find all tweets with certain user
+    var ref = firebase.database().ref("tweets");
+        ref.orderByChild("username").equalTo(name).on("value", function(snapshot) {
+        // iterate through each match
+        snapshot.forEach(function(childSnapshot) {
+            // key will be "ada" the first time and "alan" the second time
+            var key = childSnapshot.key;
+            // childData will be the actual contents of the child
+            var childData = childSnapshot.val();
+         });
+    });
+    //returns a list of tweets when tweet.name === name
+    //display list with another input box
+    //ideally reusing tweets component, feeding it a different set of notes
+    //for now always show filtered version
+    //no filter show nothing
+  }
+
   render() {
     return (
       <div className="tweetsFooter">
@@ -81,7 +100,7 @@ class App extends Component {
           }
         </div>
         <div className="tweetsFooter">
-          <TweetForm setUser={this.setUser} addTweet={this.addTweet}/>
+          <TweetForm filterTweets={this.filterTweets} setUser={this.setUser} addTweet={this.addTweet}/>
         </div>
       </div>
     );
