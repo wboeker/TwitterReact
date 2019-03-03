@@ -64,29 +64,11 @@ class App extends Component {
   }
 
   filterTweets(name){
-    // Find all tweets with certain user
-    var ref = firebase.database().ref("tweets");
-        ref.orderByChild("username").equalTo(name).on("child_added", function(snapShot) {
-          console.log("Equal to filter: " + snapShot.val().username);
-          debugger;
-          // iterate through each match
-          // snapShot.forEach(function(childSnapshot) {
-          //     // key will be "ada" the first time and "alan" the second time
-          //     var key = childSnapshot.key;
-          //     // childData will be the actual contents of the child
-          //     var childData = childSnapshot.val();
-          //  });
-    });
-    //returns a list of tweets when tweet.name === name
-    //display list with another input box
-    //ideally reusing tweets component, feeding it a different set of notes
-    //for now always show filtered version
-    //no filter show nothing
+    window.location= '/?user=' + name;
   }
 
   render() {
     const query = queryString.parse(window.location.search);
-    debugger;
     return (
       <div className="tweetsFooter">
         <div className="tweetsHeader">
