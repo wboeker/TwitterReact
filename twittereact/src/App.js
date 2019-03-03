@@ -13,6 +13,7 @@ class App extends Component {
     super(props);
     this.addTweet = this.addTweet.bind(this);
     this.removeTweet = this.removeTweet.bind(this);
+    this.seeUsers = this.seeUsers.bind(this);
 
     this.app = firebase.initializeApp(DB_CONFIG);
     //store list of tweets firebase
@@ -21,6 +22,7 @@ class App extends Component {
     this.state = {
       //array of tweets
       tweets: [],
+      usersVisible: false,
     }
   }
 
@@ -67,6 +69,15 @@ class App extends Component {
     window.location= '/?user=' + name;
   }
 
+  seeUsers(){
+    var listUsers = [];
+    for (var i = 0; i < this.state.tweets.length; i++) {
+        listUsers.push(this.state.tweets[i].username);
+    }
+    var setUsers = new Set(listUsers);
+    debugger;
+  }
+
   render() {
     const query = queryString.parse(window.location.search);
     return (
@@ -74,6 +85,8 @@ class App extends Component {
         <div className="tweetsHeader">
           <div className="heading">Tweets</div>
         </div>
+        <button className="userButton"
+        onClick={this.seeUsers}>See all users</button>
         <div className="tweetsBody">
           {
             //map each note in tweets array into a note component

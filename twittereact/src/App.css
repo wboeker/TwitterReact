@@ -59,3 +59,18 @@ body {
   flex: 1 1 5%;
   background-color: rgba(0,0,0,0.5);
 }
+
+.userButton{
+    border: none;
+    margin: 0px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 8px 24px;
+    font-size: 0.5em;
+    font-family: 'Droid Sans', sans-serif;
+    background-color: #019875;
+    color: #fff;
+    transition: 0.2s ease-out;
+    width: 80px;
+    height: 20px;
+}
