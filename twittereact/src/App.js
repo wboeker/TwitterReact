@@ -5,6 +5,7 @@ import { DB_CONFIG } from './Config/config';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import './App.css';
+import queryString from 'query-string';
 
 class App extends Component {
 
@@ -84,6 +85,8 @@ class App extends Component {
   }
 
   render() {
+    const query = queryString.parse(window.location.search);
+    debugger;
     return (
       <div className="tweetsFooter">
         <div className="tweetsHeader">
@@ -93,11 +96,14 @@ class App extends Component {
           {
             //map each note in tweets array into a note component
             this.state.tweets.map((tweet) => {
-              return (
-                <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
-                tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
-                timeStamp={tweet.timeStamp}/>
-              )
+              // when location = { pathname: '/about' }
+              if(!query.user || query.user === tweet.username){
+                return (
+                  <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
+                  tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
+                  timeStamp={tweet.timeStamp}/>
+                )
+              }
             })
           }
         </div>
