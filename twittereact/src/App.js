@@ -55,7 +55,10 @@ class App extends Component {
     const previousTweets = this.state.tweets;
 
     //DataSnapshot
+    const username = this.state.user ? this.state.user.displayName : "";
+
     this.database.on('child_added', snap => {
+      debugger;
       previousTweets.push({
         id: snap.key,
         tweetContent: snap.val().tweetContent,
@@ -124,11 +127,12 @@ class App extends Component {
       );
     } else {
       //map each note in tweets array into a note component
+      const username = this.state.user ? this.state.user.displayName : "";
       return(
         this.state.tweets.map((tweet) => {
           if(!query.user || query.user === tweet.username){
             return (
-              <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
+              <Tweet username={username} tweetContent={tweet.tweetContent}
               tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
               timeStamp={tweet.timeStamp}/>
             );
@@ -155,7 +159,7 @@ class App extends Component {
           {this.helper()}
         </div>
         <div className="tweetsFooter">
-          <TweetForm filterTweets={this.filterTweets} setUser={this.setUser} addTweet={this.addTweet}/>
+          <TweetForm username = {this.state.user} filterTweets={this.filterTweets} setUser={this.setUser} addTweet={this.addTweet}/>
         </div>
       </div>
     );

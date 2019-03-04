@@ -69,7 +69,8 @@ class TweetForm extends Component{
     //   timeStamp: date
     // });
     const content = this.state.newTweetContent;
-    const user = this.state.username;
+
+    const user = this.props.username ? this.props.username.displayName : "";
     // const time = this.state.timeStamp;
 
     this.props.addTweet(content,user,date);
@@ -89,11 +90,6 @@ class TweetForm extends Component{
 
         <button className="filterButton"
         onClick={this.filterByUser}>Filter</button>
-
-        <input className="usernameInput"
-        placeholder="What's your username?"
-        value={this.state.user}
-        onChange={this.changeUser}/>
 
         <input className="tweetInput"
         placeholder="Write a new tweet..."
