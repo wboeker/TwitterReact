@@ -58,7 +58,6 @@ class App extends Component {
     const username = this.state.user ? this.state.user.displayName : "";
 
     this.database.on('child_added', snap => {
-      debugger;
       previousTweets.unshift({
         id: snap.key,
         tweetContent: snap.val().tweetContent,
@@ -98,7 +97,6 @@ class App extends Component {
   }
 
   seeUsers(){
-    debugger;
     this.setState({
       usersVisible: true,
     });
@@ -118,7 +116,6 @@ class App extends Component {
     if(this.state.usersVisible){
       const setUsers = this.constructUsers();
       var usersArray = Array.from(setUsers);
-      debugger;
       return(
           usersArray.map((user) => {
             return (<Tweet username={user}/>);
@@ -146,19 +143,21 @@ class App extends Component {
     return (
       <div className="tweetsFooter">
         <div className="tweetsHeader">
-          <div className="heading">Tweets</div>
+        <div className="login">
           {this.state.user ?
-            <button onClick={this.logout}>Log Out</button>
+            <button className="authentication" onClick={this.logout}>Log Out</button>
             :
-            <button onClick={this.login}>Log In</button>
+            <button className="authentication" onClick={this.login}>Log In</button>
           }
         </div>
-        <button className="userButton"
-        onClick={this.seeUsers}>See all users</button>
+          <div className="heading">Tweets</div>
+        </div>
         <div className="tweetsBody">
           {this.helper()}
         </div>
-        <div className="tweetsFooter">
+          <button className="userButton"
+          onClick={this.seeUsers}>See all users</button>
+          <div className="tweetsFooter">
           <TweetForm username = {this.state.user} filterTweets={this.filterTweets} setUser={this.setUser} addTweet={this.addTweet}/>
         </div>
       </div>

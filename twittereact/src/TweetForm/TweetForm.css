@@ -11,14 +11,14 @@
     padding: 8px 24px;
     font-size: 1.3em;
     font-family: 'Droid Sans', sans-serif;
-    background-color: #019875;
-    color: #fff;
+    background-color: #AEDAFF;
+    color: rgba(0,0,0,0.5);
     transition: 0.2s ease-out;
 }
 
 .tweetButton:hover, .filterButton:hover{
-    background-color: #02BA85;
-    color: #fff;
+    background-color: #B3FAEA;
+    color: rgba(0,0,0,0.5);
     transition: 0.2s ease-out;
 }
 
