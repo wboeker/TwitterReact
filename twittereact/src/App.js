@@ -70,16 +70,50 @@ class App extends Component {
   }
 
   seeUsers(){
+    debugger;
+    this.setState({
+      usersVisible: true,
+    });
+  }
+
+  constructUsers(){
     var listUsers = [];
     for (var i = 0; i < this.state.tweets.length; i++) {
         listUsers.push(this.state.tweets[i].username);
     }
     var setUsers = new Set(listUsers);
-    debugger;
+    return setUsers;
+  }
+
+  helper() {
+    const query = queryString.parse(window.location.search);
+    if(this.state.usersVisible){
+      const setUsers = this.constructUsers();
+      var usersArray = Array.from(setUsers);
+      debugger;
+      return(
+          usersArray.map((user) => {
+            return (<Tweet username={user}/>);
+          }
+        )
+      );
+    } else {
+      //map each note in tweets array into a note component
+      return(
+        this.state.tweets.map((tweet) => {
+          if(!query.user || query.user === tweet.username){
+            return (
+              <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
+              tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
+              timeStamp={tweet.timeStamp}/>
+            );
+          }
+        })
+      )
+    }
   }
 
   render() {
-    const query = queryString.parse(window.location.search);
     return (
       <div className="tweetsFooter">
         <div className="tweetsHeader">
@@ -88,19 +122,7 @@ class App extends Component {
         <button className="userButton"
         onClick={this.seeUsers}>See all users</button>
         <div className="tweetsBody">
-          {
-            //map each note in tweets array into a note component
-            this.state.tweets.map((tweet) => {
-              // when location = { pathname: '/about' }
-              if(!query.user || query.user === tweet.username){
-                return (
-                  <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
-                  tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
-                  timeStamp={tweet.timeStamp}/>
-                )
-              }
-            })
-          }
+          {this.helper()}
         </div>
         <div className="tweetsFooter">
           <TweetForm filterTweets={this.filterTweets} setUser={this.setUser} addTweet={this.addTweet}/>
