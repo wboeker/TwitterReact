@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Tweet from './Tweet/Tweet';
 import TweetForm from './TweetForm/TweetForm';
-import { DB_CONFIG } from './Config/config';
-import firebase from 'firebase/app';
-import 'firebase/database';
+//import { DB_CONFIG } from './Config/config';
+import firebase, { auth, provider } from './Config/firebase.js';
+//import firebase from 'firebase/app';
+//import 'firebase/database';
 import './App.css';
 import queryString from 'query-string';
 
@@ -15,7 +16,11 @@ class App extends Component {
     this.removeTweet = this.removeTweet.bind(this);
     this.seeUsers = this.seeUsers.bind(this);
 
-    this.app = firebase.initializeApp(DB_CONFIG);
+    // auth
+    this.login = this.login.bind(this); // <-- add this line
+    this.logout = this.logout.bind(this); // <-- add this line
+
+    this.app = firebase;
     //store list of tweets firebase
     this.database = this.app.database().ref().child('tweets');
     //going to setup React state of our component
@@ -23,7 +28,27 @@ class App extends Component {
       //array of tweets
       tweets: [],
       usersVisible: false,
+      user: null,
     }
+  }
+
+  logout() {
+    //add the code for this in a moment, but need to add the method now or the bind will throw an error
+    auth.signOut().then(() => {
+      this.setState({
+        user: null
+      });
+    });
+  }
+
+  login() {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+        });
+      });
   }
 
   componentWillMount(){
@@ -118,6 +143,11 @@ class App extends Component {
       <div className="tweetsFooter">
         <div className="tweetsHeader">
           <div className="heading">Tweets</div>
+          {this.state.user ?
+            <button onClick={this.logout}>Log Out</button>
+            :
+            <button onClick={this.login}>Log In</button>
+          }
         </div>
         <button className="userButton"
         onClick={this.seeUsers}>See all users</button>
