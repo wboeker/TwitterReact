@@ -59,7 +59,7 @@ class App extends Component {
 
     this.database.on('child_added', snap => {
       debugger;
-      previousTweets.push({
+      previousTweets.unshift({
         id: snap.key,
         tweetContent: snap.val().tweetContent,
         username: snap.val().username,
