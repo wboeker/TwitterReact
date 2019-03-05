@@ -89,7 +89,7 @@ class App extends Component {
   }
 
   filterTweets(name){
-    window.location= '/?user=' + name;
+    window.location= '/TwitterReact/index.html/?user=' + name;
   }
 
   toggleUsers(){
