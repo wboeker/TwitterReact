@@ -110,6 +110,7 @@ class App extends Component {
 
   helper() {
     const query = queryString.parse(window.location.search);
+    debugger;
     if(this.state.usersVisible){
       const setUsers = this.constructUsers();
       var usersArray = Array.from(setUsers);
