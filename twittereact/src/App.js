@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.addTweet = this.addTweet.bind(this);
     this.removeTweet = this.removeTweet.bind(this);
-    this.seeUsers = this.seeUsers.bind(this);
+    this.toggleUsers = this.toggleUsers.bind(this);
 
     // auth
     this.login = this.login.bind(this);
@@ -92,9 +92,10 @@ class App extends Component {
     window.location= '/?user=' + name;
   }
 
-  seeUsers(){
+  toggleUsers(){
+    const stateVisibility = this.state.usersVisible;
     this.setState({
-      usersVisible: true,
+      usersVisible: !stateVisibility,
     });
   }
 
@@ -135,6 +136,7 @@ class App extends Component {
   }
 
   render() {
+    const toggleText = this.state.usersVisible ? "Show Tweets" : "See all users";
     return (
       <div className="tweetsFooter">
         <div className="tweetsHeader">
@@ -151,7 +153,7 @@ class App extends Component {
           {this.helper()}
         </div>
           <button className="userButton"
-          onClick={this.seeUsers}>See all users</button>
+          onClick={this.toggleUsers}>{toggleText}</button>
           <div className="tweetsFooter">
           <TweetForm username = {this.state.user} filterTweets={this.filterTweets} setUser={this.setUser} addTweet={this.addTweet}/>
         </div>
