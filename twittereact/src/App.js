@@ -147,7 +147,6 @@ class App extends Component {
             <button className="authentication" onClick={this.login}>Log In</button>
           }
         </div>
-          <div className="heading">Tweets</div>
         </div>
         <div className="tweetsBody">
           {this.helper()}
