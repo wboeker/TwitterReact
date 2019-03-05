@@ -13,7 +13,7 @@ class TweetForm extends Component{
     this.handleUserInput = this.handleUserInput.bind(this);//binds this to the component
     this.changeUser = this.changeUser.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
-    this.writeTweet = this.writeTweet.bind(this);//this.writeTweet = this.writeNode.bind(this);
+    this.writeTweet = this.writeTweet.bind(this);
     this.filterByUser = this.filterByUser.bind(this);
   }
 
@@ -65,15 +65,10 @@ class TweetForm extends Component{
     // call a method that sets the tweetContent for a note to
     // the value of the input
     const date = this.constructDate();
-    // this.setState({
-    //   timeStamp: date
-    // });
     const content = this.state.newTweetContent;
+    const username = this.props.username ? this.props.username.displayName : "";
 
-    const user = this.props.username ? this.props.username.displayName : "";
-    // const time = this.state.timeStamp;
-
-    this.props.addTweet(content,user,date);
+    this.props.addTweet(content,username,date);
     //set newTweetContent back to an empty string (after onclick takes place)
     this.setState({
       newTweetContent: '',
@@ -97,7 +92,7 @@ class TweetForm extends Component{
         onChange={this.handleUserInput}/>
 
         <button className="tweetButton"
-        onClick={this.writeTweet}>Tweet</button>
+        onClick={this.writeTweet} disabled={!this.props.username}>Tweet</button>
       </div>
     )
   }

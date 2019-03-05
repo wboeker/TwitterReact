@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Tweet from './Tweet/Tweet';
 import TweetForm from './TweetForm/TweetForm';
-//import { DB_CONFIG } from './Config/config';
 import firebase, { auth, provider } from './Config/firebase.js';
-//import firebase from 'firebase/app';
-//import 'firebase/database';
 import './App.css';
 import queryString from 'query-string';
 
@@ -17,8 +14,8 @@ class App extends Component {
     this.seeUsers = this.seeUsers.bind(this);
 
     // auth
-    this.login = this.login.bind(this); // <-- add this line
-    this.logout = this.logout.bind(this); // <-- add this line
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
 
     this.app = firebase;
     //store list of tweets firebase
@@ -33,7 +30,6 @@ class App extends Component {
   }
 
   logout() {
-    //add the code for this in a moment, but need to add the method now or the bind will throw an error
     auth.signOut().then(() => {
       this.setState({
         user: null
@@ -123,7 +119,7 @@ class App extends Component {
         )
       );
     } else {
-      //map each note in tweets array into a note component
+      //map each note in tweets array into a tweet component
       const username = this.state.user ? this.state.user.displayName : "";
       return(
         this.state.tweets.map((tweet) => {
