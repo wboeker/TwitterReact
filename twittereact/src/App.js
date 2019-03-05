@@ -120,12 +120,11 @@ class App extends Component {
       );
     } else {
       //map each note in tweets array into a tweet component
-      const username = this.state.user ? this.state.user.displayName : "";
       return(
         this.state.tweets.map((tweet) => {
           if(!query.user || query.user === tweet.username){
             return (
-              <Tweet username={username} tweetContent={tweet.tweetContent}
+              <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
               tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
               timeStamp={tweet.timeStamp}/>
             );
