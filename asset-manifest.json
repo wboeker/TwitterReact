@@ -1,13 +1,13 @@
 {
   "main.css": "/TwitterReact/static/css/main.9298c381.chunk.css",
-  "main.js": "/TwitterReact/static/js/main.89d10308.chunk.js",
-  "main.js.map": "/TwitterReact/static/js/main.89d10308.chunk.js.map",
+  "main.js": "/TwitterReact/static/js/main.29b74ddc.chunk.js",
+  "main.js.map": "/TwitterReact/static/js/main.29b74ddc.chunk.js.map",
   "runtime~main.js": "/TwitterReact/static/js/runtime~main.5a29523b.js",
   "runtime~main.js.map": "/TwitterReact/static/js/runtime~main.5a29523b.js.map",
   "static/js/2.e0dc26a7.chunk.js": "/TwitterReact/static/js/2.e0dc26a7.chunk.js",
   "static/js/2.e0dc26a7.chunk.js.map": "/TwitterReact/static/js/2.e0dc26a7.chunk.js.map",
   "index.html": "/TwitterReact/index.html",
-  "precache-manifest.d6ec011185cc4cb1ef70e12df4749b85.js": "/TwitterReact/precache-manifest.d6ec011185cc4cb1ef70e12df4749b85.js",
+  "precache-manifest.58cfc12ce6f7cd5b1b95c9f585ef2cae.js": "/TwitterReact/precache-manifest.58cfc12ce6f7cd5b1b95c9f585ef2cae.js",
   "service-worker.js": "/TwitterReact/service-worker.js",
   "static/css/main.9298c381.chunk.css.map": "/TwitterReact/static/css/main.9298c381.chunk.css.map"
 }
