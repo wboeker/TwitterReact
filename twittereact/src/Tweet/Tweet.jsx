@@ -23,7 +23,8 @@ class Tweet extends Component{
   }
 
   handleFollow(logInUser,followUser){
-    alert(logInUser);
+    const user = logInUser.displayName;
+    alert(user);
     alert(followUser);
     // const previousFollows = this.state.followMap;
     //

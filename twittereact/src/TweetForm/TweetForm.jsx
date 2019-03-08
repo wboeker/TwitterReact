@@ -8,7 +8,7 @@ class TweetForm extends Component{
       newTweetContent: '',
       username: '',
       timeStamp: '',
-      filterUser: ''
+      filterUser: '',
     };
     this.handleUserInput = this.handleUserInput.bind(this);//binds this to the component
     this.changeUser = this.changeUser.bind(this);

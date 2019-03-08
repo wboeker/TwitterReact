@@ -38,17 +38,13 @@ class App extends Component {
   }
 
   login() {
-    const self = this;
     auth.signInWithPopup(provider)
       .then((result) => {
         const user = result.user;
-        debugger;
         this.setState({
           user,
         });
-        debugger;
       });
-      debugger;
   }
 
   componentWillMount(){
@@ -82,6 +78,10 @@ class App extends Component {
       })
     })
   }
+
+  // shouldComponentUpdate(nextProps, nextState){
+  //    return this.state.user !== nextState.user;
+  //  }
 
   addTweet(tweet, user, time){
     //user entered content pushed onto list in database
@@ -119,7 +119,7 @@ class App extends Component {
       var usersArray = Array.from(setUsers);
       return(
           usersArray.map((user) => {
-            return (<Tweet username={user}/>);
+            return (<Tweet username={user} loggedInUser={this.state.user}/>);
           }
         )
       );
@@ -137,9 +137,6 @@ class App extends Component {
         })
       )
     }
-  }
-
-  followUsers(user){
   }
 
   render() {
