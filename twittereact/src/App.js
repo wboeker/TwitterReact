@@ -38,13 +38,17 @@ class App extends Component {
   }
 
   login() {
+    const self = this;
     auth.signInWithPopup(provider)
       .then((result) => {
         const user = result.user;
+        debugger;
         this.setState({
-          user
+          user,
         });
+        debugger;
       });
+      debugger;
   }
 
   componentWillMount(){
@@ -89,7 +93,7 @@ class App extends Component {
   }
 
   filterTweets(name){
-    window.location= '/TwitterReact/index.html/?user=' + name;
+    window.location= '/?user=' + name;
   }
 
   toggleUsers(){
@@ -127,12 +131,15 @@ class App extends Component {
             return (
               <Tweet username={tweet.username} tweetContent={tweet.tweetContent}
               tweetId={tweet.id} key={tweet.id} removeTweet ={this.removeTweet}
-              timeStamp={tweet.timeStamp}/>
+              timeStamp={tweet.timeStamp} loggedInUser={this.state.user}/>
             );
           }
         })
       )
     }
+  }
+
+  followUsers(user){
   }
 
   render() {

@@ -10,10 +10,33 @@ class Tweet extends Component{
     this.tweetId = props.tweetId;
     this.username = props.username;
     this.timeStamp = props.timeStamp;
+    this.loggedInUser = props.loggedInUser;
+
+    this.state = {
+      //map of users each user is following
+      followMap: {},
+    }
   }
 
   handleremoveTweet(id){
     this.props.removeTweet(id);
+  }
+
+  handleFollow(logInUser,followUser){
+    alert(logInUser);
+    alert(followUser);
+    // const previousFollows = this.state.followMap;
+    //
+    // // this.database.on('child_added', snap => {
+    // //   previousFollows.push({
+    // //     id: snap.key,
+    // //     username: snap.val().user,
+    // //   })
+    //
+    //   this.setState({
+    //     followMap: previousFollows,
+    //   })
+    // })
   }
 
   render(props){
@@ -36,6 +59,7 @@ class Tweet extends Component{
             </div>
           </div>
             <p className="tweetContent">{this.tweetContent}</p>
+            <button className="followButton" onClick={() => this.handleFollow(this.loggedInUser,this.username)}>Follow</button>
         </div>
       )
   }
@@ -44,7 +68,8 @@ class Tweet extends Component{
 //set parameter type
 Tweet.propTypes = {
   tweetContent:PropTypes.string,
-  username:PropTypes.string
+  username:PropTypes.string,
+  followUsername:PropTypes.string,
 }
 
 export default Tweet;
