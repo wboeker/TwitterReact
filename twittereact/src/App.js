@@ -79,9 +79,9 @@ class App extends Component {
     })
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-     return ((this.state.user !== nextState.user) || (this.state.usersVisible !== nextState.usersVisible));
-   }
+  // shouldComponentUpdate(nextProps, nextState){
+  //    return ((this.state.user !== nextState.user) || (this.state.usersVisible !== nextState.usersVisible) || (this.state.tweets !== nextState.tweets));
+  //  }
 
    componentDidMount(){
      auth.onAuthStateChanged((user) => {

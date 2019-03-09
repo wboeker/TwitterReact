@@ -26,18 +26,6 @@ class Tweet extends Component{
     const user = logInUser.displayName;
     alert(user);
     alert(followUser);
-    // const previousFollows = this.state.followMap;
-    //
-    // // this.database.on('child_added', snap => {
-    // //   previousFollows.push({
-    // //     id: snap.key,
-    // //     username: snap.val().user,
-    // //   })
-    //
-    //   this.setState({
-    //     followMap: previousFollows,
-    //   })
-    // })
   }
 
   render(props){
