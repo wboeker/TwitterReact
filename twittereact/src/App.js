@@ -83,6 +83,14 @@ class App extends Component {
      return ((this.state.user !== nextState.user) || (this.state.usersVisible !== nextState.usersVisible));
    }
 
+   componentDidMount(){
+     auth.onAuthStateChanged((user) => {
+       if(user){
+         this.setState({user});
+       }
+     });
+   }
+
   addTweet(tweet, user, time){
     //user entered content pushed onto list in database
     this.database.push().set({tweetContent: tweet, username: user, timeStamp: time});
