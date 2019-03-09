@@ -79,9 +79,9 @@ class App extends Component {
     })
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //    return this.state.user !== nextState.user;
-  //  }
+  shouldComponentUpdate(nextProps, nextState){
+     return ((this.state.user !== nextState.user) || (this.state.usersVisible !== nextState.usersVisible));
+   }
 
   addTweet(tweet, user, time){
     //user entered content pushed onto list in database
